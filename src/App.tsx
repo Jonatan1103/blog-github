@@ -1,7 +1,11 @@
-export function App() {
+import { BrowserRouter } from "react-router-dom";
+import { Router } from "./Router";
 
+export function App() {
   return (
-    <div>olla</div>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   )
 }
 
