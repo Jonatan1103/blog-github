@@ -5,21 +5,34 @@ import { Profile } from "./components/Profile";
 import { SearchInput } from "./components/SearchInput";
 import { PostsListContainer } from "./styles";
 
-interface IPost {
+ export interface IPost {
   title: string
+  body: string
+  created_at: string
+  number: number
+  html_url: string
+  comments: number
+  user: {
+    login: string
+  }
 }
 
 export function Blog() {
   const [posts, setPosts] = useState<IPost[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const getPosts = useCallback( async (query: string = "") => {
     try {
-      const response = await api.get(`/search/issues?q=${query}%20repo:Jonatan1103/Blog-desafio-ignite `)
-      console.log(response.data)
-      setPosts(response.data.items)
-    } finally {
+      setIsLoading(true)
 
+      const response = await api.get(`/search/issues?q=${query}%20repo:Jonatan1103/Blog-desafio-ignite `)
+
+      setPosts(response.data.items)
+
+    } finally {
+      setIsLoading(false)
     }
+
   }, [posts])
 
   useEffect(() => {
@@ -32,12 +45,9 @@ export function Blog() {
       <SearchInput/>
 
       <PostsListContainer>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {posts.map( post => (
+          <Post key={post.number} post={post}/>
+        ))}
       </PostsListContainer>
     </>
   )
