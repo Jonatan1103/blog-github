@@ -1,15 +1,31 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faCalendar, faComment } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faChevronLeft, faComment } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import { Link } from "../../../../components/Link";
 import { PostHeaderContainer } from "./styles";
 
 export function PostHeader() {
+  const navigate = useNavigate()
+  function goBackHome() {
+    navigate("/")
+  }
+
   return (
     <PostHeaderContainer>
       <header>
-        <Link text="voltar" href="#"/>
-        <Link text="Ver no Github" href="#" target="_blank"/>
+        <Link
+          as='button' 
+          onClick={goBackHome}
+          icon={<FontAwesomeIcon icon={faChevronLeft}/>}
+          text="voltar" 
+          variant="iconLeft"
+        />
+        <Link 
+          text="Ver no Github" 
+          href="#" 
+          target="_blank"
+        />
       </header>
 
       <h1>JavaScript data types and data structures</h1>

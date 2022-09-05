@@ -9,4 +9,38 @@ export const PostHeaderContainer = styled.section`
   border-radius: 10px;
   padding: 2rem;
   flex-direction: column;
+
+  header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 {
+    font-size: ${(props) => props.theme.textSizes["title-title-l"]};
+    color: ${(props) => props.theme.colors["base-title"]};
+    line-height: 130%;
+    margin-bottom: 0.5rem;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    li {
+      gap: 0.5rem;
+      display: flex;
+      align-items: center;
+      color: ${(props) => props.theme.colors["base-span"]};
+      line-height: 0;
+
+      svg {
+        color: ${(props) => props.theme.colors["base-label"]};
+      }
+    }
+  }
 `
