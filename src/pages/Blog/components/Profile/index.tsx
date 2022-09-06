@@ -11,7 +11,7 @@ interface ProfileData {
   login: string
   bio: string
   avatar_url: string
-  htmml_url: string
+  html_url: string
   name: string
   company?: string
   followers: number
@@ -30,6 +30,8 @@ export function Profile() {
     } finally {
       setIsLoading(false)
     }
+    
+    console.log(profileData)
   }, [profileData])
 
   useEffect(() => {
@@ -49,9 +51,8 @@ export function Profile() {
             <header>
               <h1>{profileData.name}</h1>
               <Link
-                as="button"
                 text='github'
-                href={profileData.htmml_url}
+                href={profileData.html_url}
                 target="_blank"
               />
             </header>
